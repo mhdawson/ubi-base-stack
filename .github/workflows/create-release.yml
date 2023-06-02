@@ -139,7 +139,7 @@ jobs:
     name: Force Release Creation
     runs-on: ubuntu-22.04
     if: ${{github.event.inputs.force == 'true'}}
-    steps:create
+    steps:
     - name: Signal force release creation
       run: |
         echo "Force release creation input set to true"
