@@ -124,13 +124,13 @@ jobs:
       uses: actions/download-artifact@v3
       with:
         name: current-nodejs-16-run-image
-        path: build/run-nodejs-16.oci
+        path: build-nodejs-16
 
     - name: Download nodejs-18 Run Image
       uses: actions/download-artifact@v3
       with:
         name: current-nodejs-18-run-image
-        path: build/run-nodejs-18.oci
+        path: build-nodejs-18
 
     #- name: Run Acceptance Tests
     #run: ./scripts/test.sh
@@ -139,7 +139,7 @@ jobs:
     name: Force Release Creation
     runs-on: ubuntu-22.04
     if: ${{github.event.inputs.force == 'true'}}
-    steps:
+    steps:create
     - name: Signal force release creation
       run: |
         echo "Force release creation input set to true"
@@ -176,13 +176,13 @@ jobs:
       uses: actions/download-artifact@v3
       with:
         name: current-nodejs-16-run-image
-        path: run-nodejs-16.oci
+        path: build-nodejs-16
 
     - name: Download current nodejs-18 run image
       uses: actions/download-artifact@v3
       with:
         name: current-nodejs-18-run-image
-        path: run-nodejs-18.oci
+        path: build-nodejs-18
 
     - name: Increment Tag
       if: github.event.inputs.version == ''
@@ -233,12 +233,12 @@ jobs:
               "content_type": "application/gzip"
             },
             {
-              "path": "run-nodejs-16.oci",
+              "path": "build-nodejs-16/run.oci",
               "name": ($repo + "-" + $tag + "-" + "run-nodejs-16.oci"),
               "content_type": "application/gzip"
             },
             {
-              "path": "run-nodejs-18.oci",
+              "path": "build-nodejs-18/run.oci",
               "name": ($repo + "-" + $tag + "-" + "run-nodejs-18.oci"),
               "content_type": "application/gzip"
             }]')"
